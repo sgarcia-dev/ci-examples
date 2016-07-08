@@ -1,3 +1,4 @@
 import angular from 'angular';
 
-const ngModule = angular.module('app', []);
+const app = angular.module('app', []);
+console.log(app);
