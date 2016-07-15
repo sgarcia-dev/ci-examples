@@ -1,7 +1,7 @@
 function homeDirective() {
 	return {
 		restrict: 'E',
-		link: function(el) {
+		link: function(scope, el) {
 			el.on('click', () => alert('clicked me!'));
 		}
 	}

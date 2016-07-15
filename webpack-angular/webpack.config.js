@@ -9,17 +9,12 @@ var config = {
 	output: {
 		path: path.resolve(__dirname, 'public'),
 		filename: 'bundle.js',
-		publicPath: path.resolve(__dirname, 'public')
+		publicPath: '/'
 	},
 	devServer: {
 		contentBase: './public/'
 	},
 	plugins: [
-		// copies html to public directory
-		new CopyWebpackPlugin([
-			{ from: path.resolve(__dirname, 'app', 'index.html'),
-				to:  path.resolve(__dirname, 'public')}
-		]),
 		// required bugfix for current webpack version
 		new webpack.OldWatchingPlugin()
 	],

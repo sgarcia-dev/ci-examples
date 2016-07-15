@@ -1,5 +1,7 @@
-import angular from 'angular';
-import './styles.css';
+const angular = require('angular');
+// bootstrap main app
+require('./styles.css');
 
-const app = angular.module('app', []);
-alert(1);
+angular.module('myApp', []);
+
+require('./home/index.js');

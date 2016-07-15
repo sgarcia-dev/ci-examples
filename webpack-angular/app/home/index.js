@@ -1,5 +1,4 @@
-import homeDirective from 'home-directive';
+import homeDirective from './home-directive.js';
 
-export default ngModule => {
-	ngModule.directive('home', homeDirective);
-}
+angular.module('myApp')
+	.directive('home', homeDirective);
