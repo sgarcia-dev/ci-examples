@@ -12,7 +12,7 @@ var config = {
 		publicPath: path.resolve(__dirname, 'public')
 	},
 	devServer: {
-		contentBase: path.resolve(__dirname, 'public')
+		contentBase: './public/'
 	},
 	plugins: [
 		// copies html to public directory
