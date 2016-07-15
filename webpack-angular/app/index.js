@@ -1,4 +1,5 @@
 import angular from 'angular';
+import './styles.css';
 
 const app = angular.module('app', []);
-console.log(app);
+alert(1);

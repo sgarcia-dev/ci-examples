@@ -1,27 +1,36 @@
-var webpack = require('webpack');
+var webpack = require('webpack'),
+	path = require('path'),
+	// webpack plugins
+	CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var config = {
-	context: __dirname + '/app',
+	context: path.resolve(__dirname,'app'),
 	entry: './index.js',
 	output: {
-		path: __dirname + '/app',
-		filename: 'bundle.js'
+		path: path.resolve(__dirname, 'public'),
+		filename: 'bundle.js',
+		publicPath: path.resolve(__dirname, 'public')
 	},
-	plugins: [],
+	devServer: {
+		contentBase: path.resolve(__dirname, 'public')
+	},
+	plugins: [
+		// copies html to public directory
+		new CopyWebpackPlugin([
+			{ from: path.resolve(__dirname, 'app', 'index.html'),
+				to:  path.resolve(__dirname, 'public')}
+		]),
+		// required bugfix for current webpack version
+		new webpack.OldWatchingPlugin()
+	],
 	module: {
 		loaders: [
+			// uses babel-loader which allows usage of ECMAScript 6 (requires installing babel-preset-es2015)
 			{test: /\.js$/, loader: 'babel', exclude: /node_modules/, query: { presets: ['es2015']}},
-			{test: /\.html$/, loader: 'raw', exclude: /node_modules/},
-			{test: /\.css$/, loader: 'style!css', exclude: /node_modules/},
-			{test: /\.styl$/, loader: 'style!css!stylus', exclude: /node_modules/}
+			// uses the css-loader (loads css content) and style-loader (inserts css from css-loader into html)
+			{test: /\.css$/, loader: 'style!css', exclude: /node_modules/}
 		]
 	}
 };
-
-if (process.env.NODE_ENV === 'production') {
-	config.output.path = __dirname + '/dist';
-	config.plugins.push(new webpack.optimize.UglifyJsPlugin());
-	config.devtool = 'source-map';
-}
 
 module.exports = config;
