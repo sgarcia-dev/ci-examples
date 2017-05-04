@@ -1,2 +1,2 @@
-# ci-examples
-Examples for continous integration builds like Grunt, Gulp, and Webpack
+# Task Runner Seeds
+Examples for task runner configurations for Grunt, Gulp, and Webpack.
